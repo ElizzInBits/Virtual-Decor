@@ -1,0 +1,450 @@
+
+/* =====================================
+   DECORAR STUDIO - EDITOR 3D
+===================================== */
+
+.editor-page {
+  width: min(1400px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 40px 0 60px;
+  color: #26342d;
+}
+
+.editor-page * {
+  box-sizing: border-box;
+}
+
+/* CABEÇALHO */
+
+.editor-page .editor-heading {
+  margin-bottom: 28px;
+}
+
+.editor-page .eyebrow {
+  display: block;
+  margin-bottom: 12px;
+  color: #63836c;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+.editor-page .editor-heading h1 {
+  margin: 0;
+  font-size: 38px;
+  font-weight: 750;
+  letter-spacing: -1.5px;
+}
+
+.editor-page .editor-heading p {
+  margin-top: 10px;
+  color: #81877f;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* BARRA DE FERRAMENTAS */
+
+.editor-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.editor-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.editor-page .tool-button,
+.editor-page .clear-room-button {
+  min-height: 39px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.editor-page .tool-button {
+  color: #65736a;
+  background: #fff;
+  border: 1px solid #e1e5df;
+}
+
+.editor-page .tool-button:hover,
+.editor-page .tool-button.active {
+  color: white;
+  background: #416b54;
+  border-color: #416b54;
+}
+
+.editor-page .clear-room-button {
+  color: #b35f56;
+  background: white;
+  border: 1px solid #eadad7;
+}
+
+.editor-page .clear-room-button:hover {
+  background: #fff0ed;
+}
+
+.editor-page .clear-room-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* LAYOUT PRINCIPAL */
+
+.editor-layout {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr) 235px;
+  gap: 14px;
+  align-items: stretch;
+  min-height: 620px;
+}
+
+/* PAINÉIS LATERAIS */
+
+.editor-panel {
+  min-width: 0;
+  padding: 18px;
+  background: #fff;
+  border: 1px solid #e7ebe5;
+  border-radius: 13px;
+  overflow-y: auto;
+}
+
+.panel-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eff0eb;
+}
+
+.panel-title h3 {
+  color: #35483b;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.panel-title span {
+  color: #929a91;
+  font-size: 10px;
+}
+
+/* CATÁLOGO LATERAL */
+
+.editor-furniture-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+
+.editor-furniture-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  min-height: 66px;
+  border-bottom: 1px solid #eff0eb;
+}
+
+.editor-furniture-item div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.editor-furniture-item strong {
+  color: #37493c;
+  font-size: 12px;
+}
+
+.editor-furniture-item small {
+  color: #929a91;
+  font-size: 10px;
+}
+
+.editor-page .add-furniture-button {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background: #edf3ee;
+  color: #416b54;
+  font-size: 21px;
+  transition: 0.2s;
+}
+
+.editor-page .add-furniture-button:hover {
+  background: #416b54;
+  color: white;
+}
+
+/* CENA 3D */
+
+.scene-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 620px;
+  overflow: hidden;
+  background: #edf0eb;
+  border: 1px solid #e1e5df;
+  border-radius: 13px;
+}
+
+.scene-top-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  height: 46px;
+  padding: 0 16px;
+  background: white;
+  border-bottom: 1px solid #e9ece6;
+}
+
+.scene-top-label span:first-child {
+  color: #44594a;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.scene-top-label span:last-child {
+  color: #899187;
+  font-size: 11px;
+}
+
+.scene-container {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.scene-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: none;
+}
+
+.scene-empty-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 230px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #65736a;
+  pointer-events: none;
+}
+
+.scene-empty-message span {
+  color: #78947d;
+  font-size: 36px;
+}
+
+.scene-empty-message strong {
+  font-size: 14px;
+}
+
+.scene-empty-message small {
+  color: #899187;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* PROPRIEDADES */
+
+.properties-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.selected-product {
+  padding-top: 18px;
+}
+
+.property-category {
+  color: #63836c;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.selected-product h4 {
+  margin-top: 8px;
+  color: #36483b;
+  font-size: 15px;
+}
+
+.selected-product p {
+  margin-top: 8px;
+  color: #929a91;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.property-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.property-field label {
+  color: #526157;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.property-field input[type="color"] {
+  width: 100%;
+  height: 42px;
+  padding: 4px;
+  background: white;
+  border: 1px solid #e1e5df;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.property-field input[type="range"] {
+  width: 100%;
+  accent-color: #416b54;
+  cursor: pointer;
+}
+
+.property-field small {
+  color: #899187;
+  font-size: 11px;
+}
+
+.editor-page .remove-furniture-button {
+  min-height: 40px;
+  padding: 10px;
+  color: #b35f56;
+  background: #fff5f3;
+  border: 1px solid #f0dfdc;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.editor-page .remove-furniture-button:hover {
+  background: #f8e7e3;
+}
+
+/* ESTADO SEM SELEÇÃO */
+
+.no-selection {
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.no-selection span {
+  color: #8ca18f;
+  font-size: 32px;
+}
+
+.no-selection strong {
+  color: #526157;
+  font-size: 13px;
+}
+
+.no-selection p {
+  color: #929a91;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+/* AJUDA */
+
+.editor-help {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+  color: #879087;
+  font-size: 11px;
+}
+
+.editor-help span {
+  color: #63836c;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 1050px) {
+  .editor-layout {
+    grid-template-columns: 200px minmax(0, 1fr);
+  }
+
+  .properties-panel {
+    grid-column: 1 / -1;
+  }
+
+  .properties-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+  }
+
+  .selected-product {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 650px) {
+  .editor-page {
+    width: calc(100% - 28px);
+    padding-top: 28px;
+  }
+
+  .editor-layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .scene-panel {
+    order: -1;
+    height: 430px;
+  }
+
+  .properties-content {
+    display: flex;
+  }
+
+  .editor-toolbar {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .editor-tools {
+    width: 100%;
+  }
+
+  .editor-page .tool-button {
+    flex: 1;
+    padding: 0 8px;
+  }
+}

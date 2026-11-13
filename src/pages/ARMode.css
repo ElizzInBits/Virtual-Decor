@@ -1,0 +1,402 @@
+
+/* =====================================
+   DECORAR STUDIO - REALIDADE AUMENTADA
+===================================== */
+
+.ar-page {
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 55px 0 70px;
+  color: #26342d;
+}
+
+.ar-page * {
+  box-sizing: border-box;
+}
+
+.ar-heading {
+  margin-bottom: 35px;
+}
+
+.ar-heading .eyebrow {
+  display: block;
+  margin-bottom: 12px;
+  color: #63836c;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+.ar-heading h1 {
+  font-size: 39px;
+  letter-spacing: -1.5px;
+}
+
+.ar-heading p {
+  margin-top: 12px;
+  color: #81877f;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ÁREA PRINCIPAL */
+
+.ar-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 310px;
+  align-items: stretch;
+  gap: 18px;
+}
+
+/* VISUALIZADOR */
+
+.ar-viewer-card {
+  min-width: 0;
+  overflow: hidden;
+  background: white;
+  border: 1px solid #e7ebe5;
+  border-radius: 14px;
+}
+
+.ar-viewer-header {
+  min-height: 65px;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid #ecefe9;
+}
+
+.ar-viewer-header > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ar-viewer-header strong {
+  font-size: 14px;
+  color: #35483b;
+}
+
+.ar-viewer-header span {
+  color: #929a91;
+  font-size: 11px;
+}
+
+.ar-viewer-header .ar-mode-label {
+  padding: 7px 12px;
+  background: #edf3ee;
+  color: #416b54;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* MODEL VIEWER */
+
+model-viewer.ar-model-viewer {
+  display: block;
+  width: 100%;
+  height: 490px;
+  background: #eff1e9;
+  --poster-color: #eff1e9;
+}
+
+model-viewer.ar-model-viewer::part(default-progress-bar) {
+  background-color: #416b54;
+}
+
+/* ÁREA DE TESTE NO AMBIENTE REAL */
+
+.ar-test-area {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  padding: 22px;
+  background: white;
+  border-top: 1px solid #ecefe9;
+}
+
+.ar-test-description {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ar-camera-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 11px;
+  background: #edf3ee;
+  color: #416b54;
+  font-size: 25px;
+}
+
+.ar-test-description strong {
+  color: #35483b;
+  font-size: 13px;
+}
+
+.ar-test-description p {
+  margin-top: 5px;
+  color: #929a91;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* BOTÃO DE ABRIR A CÂMERA */
+
+.ar-launch-button {
+  position: static;
+  transform: none;
+  width: 100%;
+  max-width: none;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 9px;
+  background: #416b54;
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: none;
+  transition: 0.2s;
+}
+
+.ar-launch-button:hover {
+  background: #345640;
+}
+
+.ar-launch-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ar-launch-button span {
+  font-size: 21px;
+}
+
+/* MENSAGENS DE RETORNO */
+
+.ar-feedback {
+  padding: 12px;
+  border-radius: 8px;
+  background: #edf3ee;
+  border-left: 3px solid #63836c;
+  color: #536b58;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* EVITAR BOTÃO AR DUPLICADO */
+
+model-viewer.ar-model-viewer::part(default-ar-button) {
+  display: none;
+}
+
+/* RODAPÉ DO VISUALIZADOR */
+
+.ar-viewer-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 18px;
+  background: white;
+  border-top: 1px solid #ecefe9;
+  color: #929a91;
+  font-size: 11px;
+}
+
+/* SELETOR DE PRODUTOS */
+
+.ar-products-card {
+  padding: 19px;
+  background: white;
+  border: 1px solid #e7ebe5;
+  border-radius: 14px;
+}
+
+.ar-products-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #ecefe9;
+}
+
+.ar-products-heading h3 {
+  color: #35483b;
+  font-size: 14px;
+}
+
+.ar-products-heading span {
+  color: #929a91;
+  font-size: 10px;
+}
+
+.ar-product-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.ar-product-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 65px;
+  padding: 10px;
+  background: white;
+  border: 1px solid transparent;
+  border-bottom-color: #eff0eb;
+  border-radius: 8px;
+  text-align: left;
+  transition: 0.2s;
+}
+
+.ar-product-option:hover {
+  background: #f7f9f6;
+}
+
+.ar-product-option.selected {
+  background: #edf3ee;
+  border-color: #cbdacb;
+}
+
+.ar-product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ar-product-details strong {
+  color: #394b3e;
+  font-size: 12px;
+}
+
+.ar-product-details small {
+  color: #929a91;
+  font-size: 10px;
+}
+
+.ar-select-indicator {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: #edf3ee;
+  color: #416b54;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.ar-product-option.selected .ar-select-indicator {
+  background: #416b54;
+  color: white;
+}
+
+.ar-back-button {
+  width: 100%;
+  margin-top: 18px;
+  background: white;
+}
+
+/* INSTRUÇÕES */
+
+.ar-instructions {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 18px;
+  background: #edf3ee;
+  border-radius: 11px;
+}
+
+.ar-instructions > span {
+  color: #63836c;
+  font-size: 19px;
+}
+
+.ar-instructions strong {
+  color: #47634e;
+  font-size: 12px;
+}
+
+.ar-instructions p {
+  margin-top: 6px;
+  color: #788579;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.ar-empty {
+  min-height: 490px;
+  display: grid;
+  place-items: center;
+  color: #81877f;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 850px) {
+  .ar-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .ar-products-card {
+    order: 2;
+  }
+
+  model-viewer.ar-model-viewer {
+    height: 420px;
+  }
+}
+
+@media (max-width: 550px) {
+  .ar-page {
+    width: calc(100% - 28px);
+    padding-top: 35px;
+  }
+
+  .ar-heading h1 {
+    font-size: 30px;
+  }
+
+  model-viewer.ar-model-viewer {
+    height: 350px;
+  }
+
+  .ar-viewer-footer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ar-launch-button {
+    font-size: 11px;
+    padding: 0 14px;
+  }
+}
+@media (max-width: 550px) {
+  .ar-test-area {
+    padding: 17px;
+  }
+
+  .ar-launch-button {
+    min-height: 46px;
+    font-size: 12px;
+  }
+}
