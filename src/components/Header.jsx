@@ -1,8 +1,8 @@
 const navigation = [
   { id: "home", label: "Início" },
-  { id: "catalog", label: "Móveis" },
+  { id: "catalog", label: "Itens" },
   { id: "editor", label: "Ambiente 3D" },
-  { id: "ar", label: "Realidade Aumentada" },
+  { id: "ar", label: "Testar no Ambiente" },
   { id: "saved", label: "Meus projetos" },
 ];
 

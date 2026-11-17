@@ -15,6 +15,23 @@ function Editor3D({
   const [transformMode, setTransformMode] =
     useState("translate");
 
+  // Categoria ativa no painel de adicionar itens.
+  const [addCategory, setAddCategory] = useState("Todos");
+
+  const addCategories = [
+    "Todos",
+    "Sala",
+    "Quarto",
+    "Iluminação",
+  ];
+
+  const addFurnitureList =
+    addCategory === "Todos"
+      ? furniture
+      : furniture.filter(
+          (item) => item.category === addCategory
+        );
+
   const selectedItem = sceneItems.find(
     (item) => item.instanceId === selectedId
   );
@@ -61,11 +78,12 @@ function Editor3D({
           EDITOR DE AMBIENTES 3D
         </span>
 
-        <h1>Monte sua sala</h1>
+        <h1>Monte seu ambiente
+        </h1>
 
         <p>
-          Adicione seus móveis e personalize o ambiente
-          do jeito que desejar.
+          Adicione os itens desejados e personalize o ambiente
+          do jeito que quiser.
         </p>
       </div>
 
@@ -107,7 +125,7 @@ function Editor3D({
             onClick={() => setTransformMode("scale")}
             title="Redimensionar"
           >
-            ⤢ Escalar
+            ⤢ Aumentar
           </button>
 
         </div>
@@ -129,13 +147,31 @@ function Editor3D({
         <aside className="editor-panel furniture-panel">
 
           <div className="panel-title">
-            <h3>Adicionar móveis</h3>
-            <span>{furniture.length} produtos</span>
+            <h3>Adicionar itens</h3>
+            <span>{addFurnitureList.length} itens</span>
+          </div>
+
+          <div className="editor-category-filters">
+
+            {addCategories.map((item) => (
+              <button
+                key={item}
+                className={
+                  addCategory === item
+                    ? "editor-filter-button selected"
+                    : "editor-filter-button"
+                }
+                onClick={() => setAddCategory(item)}
+              >
+                {item}
+              </button>
+            ))}
+
           </div>
 
           <div className="editor-furniture-list">
 
-            {furniture.map((item) => (
+            {addFurnitureList.map((item) => (
               <div
                 className="editor-furniture-item"
                 key={item.id}
@@ -157,6 +193,12 @@ function Editor3D({
               </div>
             ))}
 
+            {addFurnitureList.length === 0 && (
+              <p className="editor-empty-list">
+                Nenhum item nesta categoria.
+              </p>
+            )}
+
           </div>
 
         </aside>
@@ -167,7 +209,7 @@ function Editor3D({
           <div className="scene-top-label">
             <span>Minha sala</span>
             <span>
-              {sceneItems.length} móveis adicionados
+              {sceneItems.length} itens adicionados
             </span>
           </div>
 
@@ -186,7 +228,7 @@ function Editor3D({
                 <span>＋</span>
                 <strong>Sua sala está vazia</strong>
                 <small>
-                  Selecione um móvel no painel
+                  Selecione um item no painel
                   esquerdo para começar.
                 </small>
               </div>
@@ -214,14 +256,14 @@ function Editor3D({
                 <h4>{selectedItem.name}</h4>
 
                 <p>
-                  Personalize o móvel selecionado.
+                  Personalize o item selecionado.
                 </p>
               </div>
 
               <div className="property-field">
 
                 <label htmlFor="furniture-color">
-                  Cor do móvel
+                  Cor
                 </label>
 
                 <input
@@ -265,31 +307,21 @@ function Editor3D({
                 className="remove-furniture-button"
                 onClick={removeSelected}
               >
-                Remover móvel
+                Remover item
               </button>
 
             </div>
           ) : (
             <div className="no-selection">
-              <span>⌖</span>
+              <span>x</span>
 
-              <strong>Nenhum móvel selecionado</strong>
+              <strong>Nenhum item selecionado</strong>
 
-              <p>
-                Clique em um móvel na sala para
-                visualizar suas propriedades.
-              </p>
             </div>
           )}
 
         </aside>
 
-      </div>
-
-      <div className="editor-help">
-        <span>✦</span>
-        Selecione um móvel para utilizar os controles
-        de movimentação, rotação e escala.
       </div>
 
     </main>

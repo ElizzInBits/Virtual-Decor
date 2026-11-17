@@ -5,16 +5,36 @@ import furniture from "../data/furniture";
 
 import "./ARMode.css";
 
-function ARMode({ onNavigate }) {
+function ARMode({ onNavigate, initialItemId }) {
   const viewerRef = useRef(null);
 
+  // Inicia vazio quando nenhum item vem do catálogo.
+  // Se o usuário escolheu "ambiente físico" no catálogo,
+  // esse item já aparece na visualização.
   const [selectedId, setSelectedId] = useState(
-    furniture[0]?.id ?? null
+    initialItemId ?? null
   );
+
+  // Categoria ativa no seletor de itens.
+  const [productCategory, setProductCategory] = useState("Todos");
 
   const [arMessage, setArMessage] = useState("");
 
   const [viewerLoaded, setViewerLoaded] = useState(false);
+
+  const productCategories = [
+    "Todos",
+    "Sala",
+    "Quarto",
+    "Iluminação",
+  ];
+
+  const productList =
+    productCategory === "Todos"
+      ? furniture
+      : furniture.filter(
+          (item) => item.category === productCategory
+        );
 
   const selectedFurniture = furniture.find(
     (item) => item.id === selectedId
@@ -34,7 +54,7 @@ function ARMode({ onNavigate }) {
     const handleError = () => {
       setViewerLoaded(false);
       setArMessage(
-        "Não foi possível carregar o modelo. Confira o arquivo GLB."
+        "Não foi possível carregar o modelo. O Bastos vai resolver"
       );
     };
 
@@ -42,16 +62,16 @@ function ARMode({ onNavigate }) {
       const status = event.detail?.status;
 
       if (status === "session-started") {
-        setArMessage("AR iniciada. Procure uma superfície para posicionar o móvel.");
+        setArMessage("Procure uma superfície para posicionar o móvel.");
       }
 
       if (status === "object-placed") {
-        setArMessage("Móvel posicionado no ambiente!");
+        setArMessage("Móvel posicionado");
       }
 
       if (status === "failed") {
         setArMessage(
-          "Não foi possível iniciar a AR. Verifique a compatibilidade do dispositivo."
+          "Não foi possível iniciar. Verifique a compatibilidade do dispositivo."
         );
       }
 
@@ -71,7 +91,7 @@ function ARMode({ onNavigate }) {
     };
   }, [selectedFurniture?.model]);
 
-  // Esta chamada precisa acontecer diretamente no clique do usuário.
+  // Esta chamada tme que acontecer diretamente no clique que o usuário fezer
   function testInMyEnvironment() {
     const viewer = viewerRef.current;
 
@@ -95,7 +115,7 @@ function ARMode({ onNavigate }) {
       if (result && typeof result.catch === "function") {
         result.catch(() => {
           setArMessage(
-            "Não foi possível abrir a câmera. Confira as permissões e a compatibilidade."
+            "Não foi possível abrir a câmera. Confira as permissões."
           );
         });
       }
@@ -120,7 +140,7 @@ function ARMode({ onNavigate }) {
 
         <p>
           Escolha um móvel, visualize em 3D e experimente
-          como ele ficaria dentro da sua casa.
+          como ele ficaria dentro do seu ambiente.
         </p>
       </header>
 
@@ -133,20 +153,19 @@ function ARMode({ onNavigate }) {
           <div className="ar-viewer-header">
             <div>
               <strong>
-                {selectedFurniture?.name}
+                {selectedFurniture
+                  ? selectedFurniture.name
+                  : "Nenhum item selecionado"}
               </strong>
 
               <span>
-                Visualização tridimensional do produto
+                Visualização tridimensional do item
               </span>
             </div>
 
-            <span className="ar-mode-label">
-              3D + AR
-            </span>
           </div>
 
-          {selectedFurniture && (
+          {selectedFurniture ? (
             <model-viewer
               key={selectedFurniture.id}
               ref={viewerRef}
@@ -165,26 +184,32 @@ function ARMode({ onNavigate }) {
               interaction-prompt="auto"
               loading="eager"
             />
+          ) : (
+            <div className="ar-empty">
+              <span className="ar-empty-icon">＋</span>
+              <strong>Nenhum item selecionado</strong>
+              <small>
+                Escolha um item no painel ao lado para
+                visualizá-lo aqui em 3D.
+              </small>
+            </div>
           )}
 
           <div className="ar-viewer-footer">
-            <span>↔ Arraste para girar</span>
+            <span>Arraste para girar</span>
             <span>Scroll para aproximar</span>
           </div>
 
-          {/* NOVA OPÇÃO DE AR */}
+          {/* OPÇÃO DE AR */}
 
+          {selectedFurniture && (
           <div className="ar-test-area">
 
             <div className="ar-test-description">
-              <span className="ar-camera-icon">⌖</span>
 
               <div>
                 <strong>Gostou do modelo?</strong>
 
-                <p>
-                  Veja como ele ficaria na sua própria casa.
-                </p>
               </div>
             </div>
 
@@ -193,7 +218,6 @@ function ARMode({ onNavigate }) {
               onClick={testInMyEnvironment}
               disabled={!viewerLoaded}
             >
-              <span>⌖</span>
               Testar no meu ambiente
             </button>
 
@@ -208,24 +232,43 @@ function ARMode({ onNavigate }) {
             )}
 
           </div>
+          )}
 
         </section>
 
-        {/* SELETOR DE MÓVEIS */}
+        {/* SELETOR DE ITENS */}
 
         <aside className="ar-products-card">
 
           <div className="ar-products-heading">
-            <h3>Escolha um móvel</h3>
+            <h3>Adicionar itens</h3>
 
             <span>
-              {furniture.length} produtos
+              {productList.length} itens
             </span>
+          </div>
+
+          <div className="ar-category-filters">
+
+            {productCategories.map((item) => (
+              <button
+                key={item}
+                className={
+                  productCategory === item
+                    ? "ar-filter-button selected"
+                    : "ar-filter-button"
+                }
+                onClick={() => setProductCategory(item)}
+              >
+                {item}
+              </button>
+            ))}
+
           </div>
 
           <div className="ar-product-list">
 
-            {furniture.map((item) => (
+            {productList.map((item) => (
 
               <button
                 key={item.id}
@@ -271,14 +314,12 @@ function ARMode({ onNavigate }) {
 
       <section className="ar-instructions">
 
-        <span>✦</span>
-
         <div>
           <strong>Como utilizar?</strong>
 
           <p>
             Escolha um móvel, clique em testar no meu ambiente,
-            aponte a câmera para o chão e siga as instruções
+            aponte a câmera para uma superficie e siga as instruções
             exibidas pelo dispositivo para posicioná-lo.
           </p>
         </div>

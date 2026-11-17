@@ -140,6 +140,37 @@
 
 /* CATÁLOGO LATERAL */
 
+.editor-category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 14px 0 6px;
+}
+
+.editor-filter-button {
+  padding: 7px 12px;
+  border: 1px solid #e1e5df;
+  border-radius: 20px;
+  background: #fff;
+  color: #68736a;
+  font-size: 11px;
+  transition: 0.2s;
+}
+
+.editor-filter-button:hover,
+.editor-filter-button.selected {
+  background: #416b54;
+  color: white;
+  border-color: #416b54;
+}
+
+.editor-empty-list {
+  margin-top: 16px;
+  color: #929a91;
+  font-size: 11px;
+  text-align: center;
+}
+
 .editor-furniture-list {
   display: flex;
   flex-direction: column;

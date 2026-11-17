@@ -11,13 +11,13 @@ function Home({ onNavigate }) {
           </span>
 
           <h1>
-            Sua casa, suas ideias,
+            Suas ideias,
             <span> suas possibilidades.</span>
           </h1>
 
           <p>
-            Experimente móveis, transforme ambientes e
-            descubra como sua casa pode ficar antes mesmo
+            Experimente móveis e itens de decoração, e
+            descubra como seu ambiente pode ficar antes mesmo
             de comprar qualquer produto.
           </p>
 
@@ -33,13 +33,8 @@ function Home({ onNavigate }) {
               className="button button-outline"
               onClick={() => onNavigate("catalog")}
             >
-              Explorar móveis
+              Explorar itens
             </button>
-          </div>
-
-          <div className="hero-note">
-            <span>✦</span>
-            Experimente em 3D, AR e panoramas 360°
           </div>
         </div>
 
@@ -58,10 +53,6 @@ function Home({ onNavigate }) {
 
             <div className="coffee-table" />
             <div className="room-rug" />
-
-            <span className="room-label">
-              Sala de estar · Prévia
-            </span>
           </div>
         </div>
       </section>
@@ -79,7 +70,7 @@ function Home({ onNavigate }) {
 
           <article className="feature-card">
             <div className="feature-icon">🛋️</div>
-            <h3>Catálogo de móveis</h3>
+            <h3>Catálogo de itens</h3>
             <p>
               Explore diferentes móveis e opções de decoração.
             </p>
@@ -87,7 +78,7 @@ function Home({ onNavigate }) {
               className="text-button"
               onClick={() => onNavigate("catalog")}
             >
-              Ver catálogo →
+              Ver catálogo 
             </button>
           </article>
 
@@ -101,7 +92,7 @@ function Home({ onNavigate }) {
               className="text-button"
               onClick={() => onNavigate("editor")}
             >
-              Criar ambiente →
+              Criar ambiente 
             </button>
           </article>
 
@@ -109,13 +100,13 @@ function Home({ onNavigate }) {
             <div className="feature-icon">📱</div>
             <h3>Realidade aumentada</h3>
             <p>
-              Visualize os móveis dentro da sua própria casa.
+              Visualize os móveis dentro do suw próprio ambiente.
             </p>
             <button
               className="text-button"
               onClick={() => onNavigate("ar")}
             >
-              Experimentar AR →
+              Experimentar  
             </button>
           </article>
 
@@ -130,7 +121,7 @@ function Home({ onNavigate }) {
               className="text-button"
               onClick={() => onNavigate("saved")}
             >
-              Meus projetos →
+              Meus projetos 
             </button>
           </article>
 
@@ -138,7 +129,7 @@ function Home({ onNavigate }) {
       </section>
 
       <footer className="footer">
-        <p>VirtualDecor · Transforme ideias em ambientes.</p>
+        <p>VirtualDecor · Transforme suas ideias de forma virtual.</p>
       </footer>
 
     </main>

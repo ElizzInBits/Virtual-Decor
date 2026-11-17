@@ -9,10 +9,10 @@ import {
 } from "three";
 import { useGLTF } from "@react-three/drei";
 
-/* Plugin para a extensão KHR_materials_pbrSpecularGlossiness,
+/* Essa bomba é um Plugin para a extensão KHR_materials_pbrSpecularGlossiness,
  * removida do GLTFLoader em versões recentes do Three.js.
  * Converte materiais specular-glossiness para o padrão
- * metallic-roughness usado pelo MeshStandardMaterial. */
+ * metallic-roughness usado pelo MeshStandardMaterial. Acho que isso seja interessante para incluir na explicação */
 class PBRSpecularGlossinessExtension {
   constructor(parser) {
     this.parser = parser;
@@ -34,7 +34,7 @@ class PBRSpecularGlossinessExtension {
 
     const pending = [];
 
-    // Textura difusa → mapa de cor base
+    // Textura difusa, mapa de cor base
     if (extension.diffuseTexture !== undefined) {
       pending.push(
         parser.assignTexture(
@@ -46,14 +46,14 @@ class PBRSpecularGlossinessExtension {
       );
     }
 
-    // Fator difuso → cor base
+    // Fator difuso, cor base
     if (Array.isArray(extension.diffuseFactor)) {
       materialParams.color = new Color().fromArray(
         extension.diffuseFactor
       );
     }
 
-    // Glossiness → roughness (relação inversa), não-metálico
+    // Glossiness, roughness (relação inversa), não-metálico
     materialParams.roughness = 1 - (extension.glossinessFactor ?? 1);
     materialParams.metalness = 0;
 
@@ -86,8 +86,7 @@ function Model3D({ src, color = null }) {
       child.castShadow = true;
       child.receiveShadow = true;
 
-      // Cria cópias dos materiais para
-      // evitar alterar o modelo original.
+      // Cria cópias dos materiais paramevitar alterar o modelo original.
       if (color && child.material) {
         const applyColor = (material) => {
           const materialClone = material.clone();

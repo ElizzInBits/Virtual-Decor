@@ -5,13 +5,17 @@ import furniture from "../data/furniture";
 
 import ModelPreview from "../components/ModelPreview";
 
-function Catalog({ onNavigate, onAddFurniture }) {
+function Catalog({ onAddFurniture, onTestInAR }) {
   const [category, setCategory] = useState("Todos");
+
+  // Item de teste quando escolhido, abre a caixa
+  // perguntando onde o usuário deseja testar o item.
+  const [pendingItem, setPendingItem] = useState(null);
 
   const categories = [
     "Todos",
     "Sala",
-    "Jantar",
+    "Quarto",
     "Iluminação",
   ];
 
@@ -82,9 +86,9 @@ function Catalog({ onNavigate, onAddFurniture }) {
 
               <button
                 className="button button-primary full-button"
-                onClick={() => onAddFurniture(item)}
+                onClick={() => setPendingItem(item)}
               >
-                Adicionar ao ambiente
+                Testar
               </button>
 
             </div>
@@ -93,6 +97,85 @@ function Catalog({ onNavigate, onAddFurniture }) {
         ))}
 
       </div>
+
+      {/* CAIXA "ONDE TESTAR" */}
+
+      {pendingItem && (
+        <div
+          className="test-modal-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="test-modal-title"
+        >
+
+          <div className="test-modal">
+
+            <div className="test-modal-heading">
+              <span className="eyebrow">TESTAR ITEM</span>
+
+              <h2 id="test-modal-title">
+                Onde deseja testar {pendingItem.name.trim()}?
+              </h2>
+
+              <p>
+                Escolha como prefere visualizar o item
+                antes de decidir.
+              </p>
+            </div>
+
+            <div className="test-modal-options">
+
+              <button
+                className="test-option"
+                onClick={() => {
+                  const item = pendingItem;
+                  setPendingItem(null);
+                  onAddFurniture(item);
+                }}
+              >
+                <span className="test-option-icon">🏠</span>
+
+                <span className="test-option-text">
+                  <strong>Sala 3D virtual</strong>
+                  <small>
+                    Monte e personalize em um ambiente
+                    virtual.
+                  </small>
+                </span>
+              </button>
+
+              <button
+                className="test-option"
+                onClick={() => {
+                  const item = pendingItem;
+                  setPendingItem(null);
+                  onTestInAR(item);
+                }}
+              >
+                <span className="test-option-icon">📱</span>
+
+                <span className="test-option-text">
+                  <strong>Ambiente físico</strong>
+                  <small>
+                    Veja o item no seu próprio espaço
+                    usando a câmera.
+                  </small>
+                </span>
+              </button>
+
+            </div>
+
+            <button
+              className="test-modal-cancel"
+              onClick={() => setPendingItem(null)}
+            >
+              Cancelar
+            </button>
+
+          </div>
+
+        </div>
+      )}
 
     </main>
   );

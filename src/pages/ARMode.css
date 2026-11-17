@@ -244,6 +244,41 @@ model-viewer.ar-model-viewer::part(default-ar-button) {
   font-size: 10px;
 }
 
+/* FILTROS DE CATEGORIA (AR) */
+
+.ar-category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #ecefe9;
+}
+
+.ar-filter-button {
+  padding: 7px 13px;
+  border: 1px solid #e1e5df;
+  border-radius: 20px;
+  background: #fff;
+  color: #68736a;
+  font-size: 11px;
+  transition: 0.2s;
+}
+
+.ar-filter-button:hover,
+.ar-filter-button.selected {
+  background: #416b54;
+  color: white;
+  border-color: #416b54;
+}
+
+.ar-empty-list {
+  margin-top: 18px;
+  color: #929a91;
+  font-size: 11px;
+  text-align: center;
+}
+
 .ar-product-list {
   display: flex;
   flex-direction: column;
@@ -345,9 +380,37 @@ model-viewer.ar-model-viewer::part(default-ar-button) {
 
 .ar-empty {
   min-height: 490px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: #eff1e9;
+  text-align: center;
+  color: #81877f;
+}
+
+.ar-empty-icon {
   display: grid;
   place-items: center;
-  color: #81877f;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #78947d;
+  font-size: 34px;
+}
+
+.ar-empty strong {
+  color: #526157;
+  font-size: 15px;
+}
+
+.ar-empty small {
+  max-width: 230px;
+  color: #899187;
+  font-size: 12px;
+  line-height: 1.6;
 }
 
 /* RESPONSIVIDADE */

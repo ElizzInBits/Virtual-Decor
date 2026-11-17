@@ -18,6 +18,10 @@ function App() {
 
   const [selectedId, setSelectedId] = useState(null);
 
+  // Item escolhido no catálogo para testar no ambiente físico (AR).
+  // Quando null, a página AR inicia vazia, sem nenhum móvel pré-setado.
+  const [arItemId, setArItemId] = useState(null);
+
   // Posições iniciais para evitar que todos
   // os móveis sejam adicionados no mesmo lugar.
   const positions = [
@@ -66,24 +70,46 @@ function App() {
     setPage("editor");
   }
 
+  // Leva o usuário direto para a página de AR já com o item
+  // selecionado no catálogo carregado na visualização 3D.
+  function handleTestInAR(item) {
+    setArItemId(item.id);
+    setPage("ar");
+  }
+
+  // Navegação pela barra/header/home: ao entrar na página AR
+  // por aqui, ela começa vazia (nenhum móvel pré-setado).
+  // O fluxo catálogo -> "ambiente físico" usa handleTestInAR,
+  // que define o item antes de navegar.
+  function navigate(target) {
+    if (target === "ar") {
+      setArItemId(null);
+    }
+    setPage(target);
+  }
+
   function renderPage() {
     switch (page) {
       case "home":
         return (
-          <Home onNavigate={setPage} />
+          <Home onNavigate={navigate} />
         );
 
       case "catalog":
         return (
           <Catalog
-            onNavigate={setPage}
+            onNavigate={navigate}
             onAddFurniture={handleAddFurniture}
+            onTestInAR={handleTestInAR}
           />
         );
 
       case "ar":
         return (
-          <ARMode onNavigate={setPage} />
+          <ARMode
+            onNavigate={navigate}
+            initialItemId={arItemId}
+          />
         );
 
       case "editor":
@@ -112,7 +138,7 @@ function App() {
 
       <Header
         page={page}
-        onNavigate={setPage}
+        onNavigate={navigate}
       />
 
       {renderPage()}

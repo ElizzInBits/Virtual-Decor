@@ -716,3 +716,152 @@
   font-size: 10px;
   pointer-events: none;
 }
+
+/* CAIXA "ONDE TESTAR" (CATÁLOGO) */
+
+.test-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #26342d59;
+  backdrop-filter: blur(2px);
+}
+
+.test-modal {
+  width: min(460px, 100%);
+  padding: 30px 28px 24px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 24px 60px #26342d33;
+  animation: test-modal-in 0.18s ease;
+}
+
+@keyframes test-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.test-modal-heading {
+  text-align: center;
+}
+
+.test-modal-heading .eyebrow {
+  margin-bottom: 12px;
+}
+
+.test-modal-heading h2 {
+  font-size: 22px;
+  letter-spacing: -0.5px;
+  color: #26342d;
+}
+
+.test-modal-heading p {
+  margin-top: 10px;
+  color: #81877f;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.test-modal-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.test-option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 16px;
+  text-align: left;
+  background: #f7f9f6;
+  border: 1px solid #e7ebe5;
+  border-radius: 13px;
+  cursor: pointer;
+  transition: 0.18s;
+}
+
+.test-option:hover {
+  background: #edf3ee;
+  border-color: #cbdacb;
+  transform: translateY(-2px);
+}
+
+.test-option-icon {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 23px;
+}
+
+.test-option-text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  flex: 1;
+}
+
+.test-option-text strong {
+  color: #35483b;
+  font-size: 14px;
+}
+
+.test-option-text small {
+  color: #8b948b;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.test-option-arrow {
+  flex-shrink: 0;
+  color: #63836c;
+  font-size: 18px;
+}
+
+.test-modal-cancel {
+  display: block;
+  margin: 22px auto 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #8b948b;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.test-modal-cancel:hover {
+  color: #416b54;
+}
+
+@media (max-width: 480px) {
+  .test-modal {
+    padding: 24px 20px 20px;
+  }
+
+  .test-option {
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .test-option-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
