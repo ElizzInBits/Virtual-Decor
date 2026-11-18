@@ -64,6 +64,7 @@ function App() {
     setSelectedId(instanceId);
 
     setPage("editor");
+  }
 
   function handleTestInAR(item) {
     setArItemId(item.id);
