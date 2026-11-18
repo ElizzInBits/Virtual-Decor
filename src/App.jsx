@@ -18,12 +18,8 @@ function App() {
 
   const [selectedId, setSelectedId] = useState(null);
 
-  // Item escolhido no catálogo para testar no ambiente físico (AR).
-  // Quando null, a página AR inicia vazia, sem nenhum móvel pré-setado.
   const [arItemId, setArItemId] = useState(null);
 
-  // Posições iniciais para evitar que todos
-  // os móveis sejam adicionados no mesmo lugar.
   const positions = [
     [0, 0, 0],
     [-2, 0, 0],
@@ -68,19 +64,12 @@ function App() {
     setSelectedId(instanceId);
 
     setPage("editor");
-  }
 
-  // Leva o usuário direto para a página de AR já com o item
-  // selecionado no catálogo carregado na visualização 3D.
   function handleTestInAR(item) {
     setArItemId(item.id);
     setPage("ar");
   }
 
-  // Navegação pela barra/header/home: ao entrar na página AR
-  // por aqui, ela começa vazia (nenhum móvel pré-setado).
-  // O fluxo catálogo -> "ambiente físico" usa handleTestInAR,
-  // que define o item antes de navegar.
   function navigate(target) {
     if (target === "ar") {
       setArItemId(null);
