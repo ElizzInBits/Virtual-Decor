@@ -39,13 +39,6 @@ function Header({ page, onNavigate }) {
           </button>
         ))}
       </nav>
-
-      <button
-        className="button button-primary header-button"
-        onClick={() => onNavigate("editor")}
-      >
-        Começar a decorar
-      </button>
     </header>
   );
 }

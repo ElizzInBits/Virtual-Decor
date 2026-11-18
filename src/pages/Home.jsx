@@ -20,22 +20,6 @@ function Home({ onNavigate }) {
             descubra como seu ambiente pode ficar antes mesmo
             de comprar qualquer produto.
           </p>
-
-          <div className="hero-actions">
-            <button
-              className="button button-primary"
-              onClick={() => onNavigate("editor")}
-            >
-              Criar meu ambiente
-            </button>
-
-            <button
-              className="button button-outline"
-              onClick={() => onNavigate("catalog")}
-            >
-              Explorar itens
-            </button>
-          </div>
         </div>
 
         <div className="hero-visual">

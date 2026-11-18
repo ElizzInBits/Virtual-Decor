@@ -107,10 +107,6 @@
   background: #edf3ee;
 }
 
-.header-button {
-  white-space: nowrap;
-}
-
 /* PÁGINA INICIAL */
 
 .hero {
@@ -153,13 +149,6 @@
   color: #747c72;
   font-size: 15px;
   line-height: 1.8;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 28px;
 }
 
 .hero-note {
@@ -633,10 +622,6 @@
   .topbar {
     padding: 15px;
     gap: 15px;
-  }
-
-  .header-button {
-    display: none;
   }
 
   .navigation {

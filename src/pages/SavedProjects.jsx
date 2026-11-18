@@ -7,21 +7,17 @@ function SavedProjects() {
         <span className="eyebrow">SUA BIBLIOTECA</span>
         <h1>Meus projetos</h1>
         <p>
-          Aqui você encontrará suas decorações e
-          experiências panorâmicas 360° salvas.
+          Aqui vai ficar as decorações salvas panorâmicas em 360°.
         </p>
       </div>
 
       <section className="placeholder-card">
         <div className="placeholder-icon">🌐</div>
-        <h2>Nenhum projeto salvo ainda</h2>
-        <p>
-          Seus ambientes personalizados e imagens
-          panorâmicas aparecerão nesta área.
-        </p>
+        <h2>Sem projeto ainda</h2>
+
 
         <span className="status-label">
-          Salvamento previsto para a etapa 6
+         Precisa desenvolver 
         </span>
       </section>
 
